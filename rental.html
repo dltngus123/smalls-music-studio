@@ -159,6 +159,12 @@
     padding:28px 20px;
     text-align:left;
   }
+  .rental-card-wide{grid-column:1 / -1;}
+  .spec-columns{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+    margin-top:14px;
+  }
+  .spec-col .spec-subhead{margin-top:0;}
   .rental-card h3{margin:0; font-size:1.05rem; font-weight:700;}
   .rental-card p{margin:8px 0 0; color:var(--ink-dim); font-size:.85rem; line-height:1.6;}
   .spec-list{
@@ -166,10 +172,10 @@
     display:flex; flex-direction:column; gap:6px;
   }
   .spec-subhead{
-    margin:14px 0 4px; font-size:.82rem; font-weight:700;
-    color:var(--amber);
+    margin:8px 0 4px; font-size:1.05rem; font-weight:700;
+    color:var(--ink);
   }
-  .spec-subhead:first-of-type{margin-top:10px;}
+  .spec-subhead:first-of-type{margin-top:14px;}
   .spec-list li{
     color:var(--ink-dim); font-size:.85rem; line-height:1.5;
     padding-left:12px; position:relative;
@@ -223,6 +229,50 @@
   }
   .cta h2{font-size:clamp(1.4rem, 3vw, 2rem); margin:0 0 16px; font-weight:700;}
   .cta p{color:var(--ink-dim); max-width:48ch; margin:0 auto 28px;}
+  .cta-lead{
+    margin:0 auto 32px !important;
+    max-width:60ch;
+    text-align:center;
+    color:var(--ink-dim);
+  }
+  .contact-card{
+    max-width:420px;
+    margin:0 auto 32px;
+    background:var(--bg-0);
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:30px 28px 26px;
+    text-align:left;
+    box-shadow:0 10px 26px rgba(38,34,28,0.06);
+  }
+  .contact-brand{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-brand img{height:30px; width:auto; display:block;}
+  .contact-brand span{font-weight:800; font-size:.95rem; letter-spacing:.03em; color:var(--ink);}
+  .contact-row{
+    display:flex; align-items:center; gap:14px;
+    padding:11px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-icon{
+    width:36px; height:36px; border-radius:8px;
+    background:var(--amber-dim);
+    color:var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.66rem; font-weight:800; letter-spacing:.02em;
+    flex-shrink:0;
+  }
+  .contact-text{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .contact-label{font-size:.7rem; color:var(--ink-dim); letter-spacing:.03em;}
+  .contact-value{color:var(--ink); font-weight:700; font-size:.95rem; text-decoration:none;}
+  a.contact-value:hover{color:var(--amber);}
+  .cta-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     padding:14px 26px; border-radius:3px;
@@ -266,6 +316,7 @@
     nav#site-nav ul li:not(:last-child)::after{display:none;}
     header{position:relative;}
     .rental-grid{grid-template-columns:1fr;}
+    .spec-columns{grid-template-columns:1fr;}
     .rental-photos{grid-template-columns:1fr;}
   }
 </style>
@@ -350,33 +401,52 @@
       </ul>
     </div>
     <div class="rental-card">
-      <h3>드럼 / 심벌</h3>
-      <p class="spec-subhead">드럼</p>
+      <h3>드럼</h3>
       <ul class="spec-list">
         <li>Yamaha Live Custom</li>
         <li>Pearl MCX</li>
         <li>Gretsch Catalina Maple Custom</li>
       </ul>
-      <p class="spec-subhead">심벌</p>
+      <h3>심벌</h3>
       <ul class="spec-list">
         <li>Zildjian K Custom (14˝ 16˝ 18˝ 20˝)</li>
         <li>Zildjian A Custom (14˝ 16˝ 18˝ 20˝)</li>
         <li>Sabian HHX Evolution (14˝ 16˝ 18˝O-Zone 20˝)</li>
       </ul>
     </div>
-    <div class="rental-card">
+    <div class="rental-card rental-card-wide">
       <h3>음향장비</h3>
-    </div>
-    <div class="rental-card">
-      <h3>조명장비</h3>
-    </div>
-    <div class="rental-card">
-      <h3>촬영장비</h3>
-    </div>
-    <div class="rental-card">
-      <h3>녹음장비</h3>
+      <div class="spec-columns">
+        <div class="spec-col">
+          <p class="spec-subhead">SPEAKER</p>
+          <ul class="spec-list">
+            <li>JBL EON ONE MK2 컬럼어레이</li>
+            <li>db Technologies ES802 컬럼어레이</li>
+            <li>JBL SRX 715</li>
+            <li>MACKIE Thump 15a</li>
+            <li>MACKIE Thump 12a</li>
+          </ul>
+        </div>
+        <div class="spec-col">
+          <p class="spec-subhead">CONSOLE</p>
+          <ul class="spec-list">
+            <li>Behringer X32</li>
+            <li>Yamaha MG12XU</li>
+            <li>Yamaha MG124FX</li>
+          </ul>
+        </div>
+        <div class="spec-col">
+          <p class="spec-subhead">MIC</p>
+          <ul class="spec-list">
+            <li>Shure QLXD / Beta 58A</li>
+            <li>Shure SM58</li>
+            <li>Shure Beta 58</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+  <p class="rental-note">전기 없는 야외도 OK! 공연용 발전기 임대도 가능합니다.</p>
 </section>
 
 <section>
@@ -392,13 +462,37 @@
 
 <section class="cta">
   <h2>문의 및 예약</h2>
-  <p class="desc" style="margin:0 auto 20px;">
-    인스타그램 DM: <a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener" style="color:var(--amber);">@smalls.music.studio</a><br>
-    전화 문의: <a href="tel:010-6890-3337" style="color:var(--amber);">010-6890-3337</a><br>
-    카카오톡: smallsmusic
-  </p>
-  <p>대전에서 믿고 맡길 수 있는 악기 렌탈, 스몰즈 뮤직 스튜디오가 책임지고 도와드리겠습니다.</p>
-  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+  <p class="cta-lead">대전에서 믿고 맡길 수 있는 렌탈, 스몰즈 뮤직 스튜디오가 책임지고 도와드리겠습니다.</p>
+
+  <div class="contact-card">
+    <div class="contact-brand">
+      <img src="images/logo.png" alt="Smalls Music Studio 로고">
+      <span>SMALLS MUSIC STUDIO</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-icon">IG</span>
+      <div class="contact-text">
+        <span class="contact-label">인스타그램 DM</span>
+        <a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener" class="contact-value">@smalls.music.studio</a>
+      </div>
+    </div>
+    <div class="contact-row">
+      <span class="contact-icon">TEL</span>
+      <div class="contact-text">
+        <span class="contact-label">전화 문의</span>
+        <a href="tel:010-6890-3337" class="contact-value">010-6890-3337</a>
+      </div>
+    </div>
+    <div class="contact-row">
+      <span class="contact-icon">KKO</span>
+      <div class="contact-text">
+        <span class="contact-label">카카오톡</span>
+        <span class="contact-value">smallsmusic</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-actions">
     <a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener" class="btn btn-primary">인스타그램 DM 보내기</a>
     <a href="index.html" class="btn btn-ghost">메인으로 돌아가기</a>
   </div>
