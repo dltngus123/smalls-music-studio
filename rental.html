@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>악기렌탈 | 스몰즈 뮤직스튜디오</title>
+<title>렌탈 | 스몰즈 뮤직스튜디오</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,7 +151,7 @@
   .section-head .desc{color:var(--ink-dim); max-width:56ch;}
 
   .rental-grid{
-    display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
   }
   .rental-card{
     border:1px solid var(--line);
@@ -161,6 +161,22 @@
   }
   .rental-card h3{margin:0; font-size:1.05rem; font-weight:700;}
   .rental-card p{margin:8px 0 0; color:var(--ink-dim); font-size:.85rem; line-height:1.6;}
+  .spec-list{
+    list-style:none; margin:10px 0 0; padding:0;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .spec-subhead{
+    margin:14px 0 4px; font-size:.82rem; font-weight:700;
+    color:var(--amber);
+  }
+  .spec-subhead:first-of-type{margin-top:10px;}
+  .spec-list li{
+    color:var(--ink-dim); font-size:.85rem; line-height:1.5;
+    padding-left:12px; position:relative;
+  }
+  .spec-list li::before{
+    content:"-"; position:absolute; left:0; color:var(--amber);
+  }
   .rental-note{
     margin-top:24px; padding:16px 20px;
     border:1px dashed var(--amber-dim);
@@ -171,7 +187,6 @@
   .check-list{
     list-style:none; margin:0; padding:0;
     display:flex; flex-direction:column; gap:12px;
-    max-width:60ch;
   }
   .check-list li{
     color:var(--ink-dim); font-size:.96rem; line-height:1.6;
@@ -180,6 +195,10 @@
   .check-list li::before{
     content:"·"; position:absolute; left:0; top:0;
     color:var(--amber); font-weight:900; font-size:1.3rem; line-height:1.1;
+  }
+  .check-list li.nowrap-line{white-space:nowrap;}
+  @media (max-width:700px){
+    .check-list li.nowrap-line{white-space:normal;}
   }
   .rental-photos{
     display:grid; grid-template-columns:1fr 1fr; gap:16px;
@@ -263,7 +282,7 @@
       <li><a href="index.html#locations-head">지점 안내</a></li>
       <li><a href="index.html#facilities">시설</a></li>
       <li><a href="index.html#contact">바로 예약하기</a></li>
-      <li><a href="rental.html" class="current">악기렌탈</a></li>
+      <li><a href="rental.html" class="current">렌탈</a></li>
       <li><a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener">블로그</a></li>
       <li><a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener">인스타그램</a></li>
     </ul>
@@ -275,7 +294,7 @@
 
 <section class="page-hero">
   <p class="kicker">RENTAL</p>
-  <h1>악기렌탈</h1>
+  <h1>렌탈</h1>
   <p>음악 장비, 매번 사기엔 부담되고 믿을 수 있는 곳에서 대여하고 싶으셨죠?<br>대전 지역의 전문 음악 공간 <b>스몰즈 뮤직 스튜디오</b>에서는 공연, 레코딩, 연습 등 다양한 용도에 맞춘 악기 및 음향 렌탈 서비스를 제공합니다.</p>
 </section>
 
@@ -302,19 +321,48 @@
   <div class="rental-grid">
     <div class="rental-card">
       <h3>기타 앰프</h3>
-      <p>Marshall MG100FX, Marshall CODE100H, Fender Champion100, Fender Deluxe 112 등</p>
+      <ul class="spec-list">
+        <li>Marshall JCM 2000 DSL + 1960A (12"×4 캐비넷 포함)</li>
+        <li>Marshall Code 100H + Code 212</li>
+        <li>Marshall Deluxe 112</li>
+        <li>Marshall MG 100 DFX</li>
+        <li>Fender Twin Reverb</li>
+        <li>Fender Champion 100</li>
+      </ul>
     </div>
     <div class="rental-card">
       <h3>베이스 앰프</h3>
-      <p>Ampeg BA112 V2, BA115-V2 등</p>
+      <ul class="spec-list">
+        <li>Ampeg SVT-4 PRO + 410</li>
+        <li>Ampeg BA 115 V2</li>
+        <li>Ampeg BA 112 V2</li>
+        <li>Fender Rumble 500</li>
+      </ul>
     </div>
     <div class="rental-card">
       <h3>건반</h3>
-      <p>Yamaha MX88, Kurzweil SP4-8, SP6 등</p>
+      <ul class="spec-list">
+        <li>Yamaha S90 XS</li>
+        <li>Yamaha S90 ES</li>
+        <li>Yamaha MODX8+</li>
+        <li>Yamaha MX88</li>
+        <li>Kurzweil SP6</li>
+      </ul>
     </div>
     <div class="rental-card">
       <h3>드럼 / 심벌</h3>
-      <p>Gretch Catalina Maple, YAMAHA Live Custom, DW Collector Series · Zildjian K/A Custom, Sabian HHX</p>
+      <p class="spec-subhead">드럼</p>
+      <ul class="spec-list">
+        <li>Yamaha Live Custom</li>
+        <li>Pearl MCX</li>
+        <li>Gretsch Catalina Maple Custom</li>
+      </ul>
+      <p class="spec-subhead">심벌</p>
+      <ul class="spec-list">
+        <li>Zildjian K Custom (14˝ 16˝ 18˝ 20˝)</li>
+        <li>Zildjian A Custom (14˝ 16˝ 18˝ 20˝)</li>
+        <li>Sabian HHX Evolution (14˝ 16˝ 18˝O-Zone 20˝)</li>
+      </ul>
     </div>
     <div class="rental-card">
       <h3>음향장비</h3>
@@ -329,18 +377,6 @@
       <h3>녹음장비</h3>
     </div>
   </div>
-  <p class="rental-note">추가로 선호하시는 장비 또는 필요한 장비가 있으실 경우 말씀하시면 최대한 맞춰 드립니다!</p>
-</section>
-
-<section style="border-bottom:1px solid var(--line);">
-  <div class="section-head">
-    <p class="kicker">ON SITE</p>
-    <h2>현장사진</h2>
-  </div>
-  <div class="rental-photos">
-    <img src="images/rental-site-01.jpg" alt="렌탈 드럼 세트 현장 세팅 사진">
-    <img src="images/rental-site-02.jpg" alt="렌탈 기타 앰프 현장 세팅 사진">
-  </div>
 </section>
 
 <section>
@@ -350,8 +386,7 @@
   </div>
   <ul class="check-list">
     <li>전화 또는 인스타그램 DM으로 대여 가능 장비 및 일정 확인 바랍니다.</li>
-    <li>악기는 공연 장소로 배송 및 세팅, 철수까지 신경쓰시지 않도록 저희가 책임지겠습니다.</li>
-    <li>직접 운반하실 경우 출장비 제외하고 렌탈 가능합니다.</li>
+    <li class="nowrap-line">악기는 공연 장소로 배송 및 세팅, 철수까지 신경쓰시지 않도록 저희가 책임지겠습니다.</li>
   </ul>
 </section>
 
@@ -372,7 +407,7 @@
 <footer>
   <span style="display:flex; align-items:center; gap:10px;">
     <img src="images/logo.png" alt="Smalls Music Studio 로고" style="height:28px; width:auto; display:block;">
-    <span>· 악기렌탈</span>
+    <span>· 렌탈</span>
   </span>
   <span>© 2026 Smalls Music Studio. All rights reserved.</span>
 </footer>
