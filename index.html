@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스몰즈 뮤직스튜디오 | 대전 오류점 · 갈마점</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#141316;
+    --bg-1:#1c1b1f;
+    --bg-2:#242226;
+    --line:#37343a;
+    --ink:#f2ede4;
+    --ink-dim:#a9a3ad;
+    --amber:#e8a33d;
+    --amber-dim:#6b5730;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-0);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    line-height:1.6;
+  }
+  .num{font-family:'Oswald', sans-serif;}
+
+  a{color:inherit;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(20,19,22,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    font-weight:700; font-size:1.15rem; letter-spacing:.02em;
+    text-decoration:none;
+  }
+  .brand span{color:var(--amber);}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{text-decoration:none; color:var(--ink-dim); font-size:.92rem; font-weight:500; transition:color .2s;}
+  nav a:hover{color:var(--ink);}
+  .nav-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:14vh 6vw 12vh;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 78% 8%, rgba(232,163,61,0.16), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 100%, rgba(232,163,61,0.08), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    position:relative;
+    color:var(--amber); font-weight:600; font-size:.95rem;
+    margin:0 0 18px;
+  }
+  .hero h1{
+    position:relative;
+    font-size:clamp(2.3rem, 5.4vw, 4.4rem);
+    line-height:1.18;
+    font-weight:900;
+    margin:0 0 28px;
+    max-width:14ch;
+  }
+  .hero p{
+    position:relative;
+    max-width:52ch;
+    color:var(--ink-dim);
+    font-size:1.05rem;
+    margin:0 0 40px;
+  }
+  .hero-actions{position:relative; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    border-radius:3px;
+    text-decoration:none;
+    font-weight:600; font-size:.95rem;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-primary{background:var(--amber); color:#1a1508;}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--amber);}
+
+  .hero-strip{
+    position:relative;
+    margin-top:10vh;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .hero-strip div{
+    background:var(--bg-0);
+    padding:22px 24px;
+  }
+  .hero-strip .num{font-size:1.6rem; color:var(--amber); display:block;}
+  .hero-strip small{color:var(--ink-dim); font-size:.82rem;}
+
+  /* ---------- section shell ---------- */
+  section{padding:11vh 6vw;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head p.kicker{color:var(--amber); font-weight:600; font-size:.9rem; margin:0 0 12px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:700; margin:0 0 14px; line-height:1.3;}
+  .section-head .desc{color:var(--ink-dim); max-width:56ch;}
+
+  /* ---------- about ---------- */
+  .about{border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:start;}
+  .about-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:22px;}
+  .about-list li{padding-bottom:20px; border-bottom:1px solid var(--line);}
+  .about-list li:last-child{border-bottom:none;}
+  .about-list h3{margin:0 0 6px; font-size:1.05rem; font-weight:600;}
+  .about-list p{margin:0; color:var(--ink-dim); font-size:.94rem;}
+
+  /* ---------- locations ---------- */
+  .locations{border-bottom:1px solid var(--line);}
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .loc-card{
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    display:flex; flex-direction:column;
+  }
+  .loc-photo{
+    height:200px;
+    position:relative;
+    display:flex; align-items:flex-end;
+    padding:20px 24px;
+  }
+  .loc-photo.oryu{background:linear-gradient(135deg, #3a2c14, #1c1b1f 70%);}
+  .loc-photo.galma{background:linear-gradient(135deg, #2a1f30, #1c1b1f 70%);}
+
+  /* ---------- slideshow ---------- */
+  .loc-slideshow{
+    position:relative;
+    height:220px;
+    overflow:hidden;
+    background:var(--bg-2);
+  }
+  .loc-slideshow .slides{position:relative; width:100%; height:100%;}
+  .loc-slideshow .slide{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .loc-slideshow .slide.active{opacity:1;}
+  .loc-slideshow::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,19,22,0) 55%, rgba(20,19,22,0.75) 100%);
+    pointer-events:none;
+  }
+  .slideshow-tag{
+    position:absolute; left:20px; bottom:16px; z-index:2;
+    background:rgba(20,19,22,0.55);
+  }
+  .slide-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    z-index:3;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(20,19,22,0.45);
+    color:var(--ink);
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s, border-color .2s;
+  }
+  .slide-nav:hover{background:rgba(232,163,61,0.85); color:#1a1508; border-color:transparent;}
+  .slide-nav.prev{left:14px;}
+  .slide-nav.next{right:14px;}
+  .slide-dots{
+    position:absolute; right:16px; bottom:14px; z-index:2;
+    display:flex; gap:6px;
+  }
+  .slide-dots span{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,0.35);
+    cursor:pointer;
+    transition:background .2s, width .2s;
+  }
+  .slide-dots span.active{background:var(--amber); width:16px; border-radius:3px;}
+  .loc-tag{
+    font-family:'Oswald', sans-serif;
+    font-size:.85rem; letter-spacing:.04em;
+    color:var(--amber);
+    border:1px solid var(--amber-dim);
+    padding:4px 10px;
+  }
+  .loc-body{padding:28px 24px 30px; display:flex; flex-direction:column; gap:18px; flex:1;}
+  .loc-body h3{margin:0; font-size:1.5rem; font-weight:700;}
+  .loc-info{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; font-size:.92rem; color:var(--ink-dim);}
+  .loc-info li{display:flex; gap:10px;}
+  .loc-info b{color:var(--ink); min-width:52px; font-weight:600;}
+  .loc-rooms{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:.8rem; padding:5px 11px; border:1px solid var(--line); color:var(--ink-dim); border-radius:20px;
+  }
+  .loc-actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; padding-top:6px;}
+  .btn-reserve{
+    flex:1;
+    justify-content:center;
+    background:var(--amber);
+    color:#1a1508;
+  }
+  .btn-map{
+    justify-content:center;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- facilities ---------- */
+  .facilities{border-bottom:1px solid var(--line);}
+  .fac-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .fac-item{background:var(--bg-0); padding:30px 24px;}
+  .fac-item .num{color:var(--amber); font-size:1.1rem; display:block; margin-bottom:14px;}
+  .fac-item h4{margin:0 0 8px; font-size:1rem; font-weight:600;}
+  .fac-item p{margin:0; color:var(--ink-dim); font-size:.88rem;}
+
+  /* ---------- cta ---------- */
+  .cta{
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .cta h2{font-size:clamp(1.6rem, 3.4vw, 2.4rem); margin:0 0 18px; font-weight:700;}
+  .cta p{color:var(--ink-dim); max-width:48ch; margin:0 auto 34px;}
+  .cta-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:6vh 6vw;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    color:var(--ink-dim); font-size:.85rem;
+  }
+
+  @media (max-width: 860px){
+    nav ul{display:none;}
+    .about-grid, .loc-grid{grid-template-columns:1fr;}
+    .hero-strip{grid-template-columns:1fr;}
+    .fac-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="brand">SMALLS <span>MUSIC STUDIO</span></a>
+  <nav>
+    <ul>
+      <li><a href="#about">스튜디오 소개</a></li>
+      <li><a href="#locations">지점 안내</a></li>
+      <li><a href="#facilities">시설</a></li>
+      <li><a href="#contact">오시는 길</a></li>
+      <li><a href="https://blog.naver.com/smalls818/224189523728" target="_blank" rel="noopener">블로그</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <p class="hero-eyebrow">DAEJEON · 오류점 / 갈마점</p>
+  <h1>연습은 편하게,<br>연주는 진지하게.</h1>
+  <p>스몰즈 뮤직스튜디오는 합주, 개인 연습, 레슨, 녹음까지 한 공간에서 해결하는 대전 지역 음악 공간입니다. 오류점과 갈마점, 두 곳에서 만나보세요.</p>
+  <div class="hero-actions">
+    <a href="#locations" class="btn btn-primary">지점별 예약하기</a>
+    <a href="#facilities" class="btn btn-ghost">시설 둘러보기</a>
+  </div>
+
+  <div class="hero-strip">
+    <div><span class="num">2</span><small>대전 내 지점 — 오류점 · 갈마점</small></div>
+    <div><span class="num">시간제</span><small>필요한 만큼만 예약해 사용</small></div>
+    <div><span class="num">전 지점</span><small>네이버 예약으로 간편하게</small></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="section-head" style="margin-bottom:0;">
+      <p class="kicker">ABOUT</p>
+      <h2>악기를 메고 오면,<br>나머지는 공간이 채웁니다.</h2>
+      <p class="desc">방음, 장비, 정리정돈까지 고민할 필요 없이 시간 맞춰 오시면 됩니다. 밴드 합주부터 보컬 레슨, 혼자만의 연습까지 — 목적에 맞는 룸을 지점별로 운영하고 있습니다.</p>
+    </div>
+    <ul class="about-list">
+      <li>
+        <h3>시간제 예약</h3>
+        <p>1시간 단위로 필요한 만큼만 예약해서 사용할 수 있습니다.</p>
+      </li>
+      <li>
+        <h3>지점별 특화 공간</h3>
+        <p>오류점과 갈마점은 각각 다른 룸 구성으로 운영되어, 목적에 맞는 지점을 선택할 수 있습니다.</p>
+      </li>
+      <li>
+        <h3>온라인 예약</h3>
+        <p>전화 없이 네이버 예약 페이지에서 원하는 시간을 바로 확인하고 예약할 수 있습니다.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="locations" id="locations">
+  <div class="section-head">
+    <p class="kicker">LOCATIONS</p>
+    <h2>두 지점, 각자의 색</h2>
+    <p class="desc">가까운 지점을 선택하고, 원하는 시간을 바로 예약하세요. 예약 버튼을 누르면 해당 지점의 네이버 예약 페이지로 연결됩니다.</p>
+  </div>
+
+  <div class="loc-grid">
+
+    <!-- 오류점 -->
+    <div class="loc-card">
+      <div class="loc-slideshow" id="oryu-slideshow">
+        <div class="slides">
+          <img src="images/oryu-01.jpg" class="slide active" alt="오류점 합주실 전경">
+          <img src="images/oryu-02.jpg" class="slide" alt="오류점 드럼 및 건반 배치">
+          <img src="images/oryu-03.jpg" class="slide" alt="오류점 합주실 창가 전경">
+          <img src="images/oryu-04.jpg" class="slide" alt="오류점 드럼 심벌 클로즈업">
+          <img src="images/oryu-05.jpg" class="slide" alt="오류점 라운지 소파">
+          <img src="images/oryu-06.jpg" class="slide" alt="오류점 휴게 공간 및 다이닝">
+          <img src="images/oryu-07.jpg" class="slide" alt="오류점 개인연습실 1">
+          <img src="images/oryu-08.jpg" class="slide" alt="오류점 개인연습실 2">
+          <img src="images/oryu-09.jpg" class="slide" alt="오류점 개인연습실 3">
+          <img src="images/oryu-10.jpg" class="slide" alt="오류점 개인연습실 4">
+        </div>
+        <span class="loc-tag slideshow-tag">STUDIO 01</span>
+        <button class="slide-nav prev" onclick="moveSlide('oryu-slideshow', -1)" aria-label="이전 사진">‹</button>
+        <button class="slide-nav next" onclick="moveSlide('oryu-slideshow', 1)" aria-label="다음 사진">›</button>
+        <div class="slide-dots"></div>
+      </div>
+      <div class="loc-body">
+        <h3>오류점</h3>
+        <ul class="loc-info">
+          <li><b>주소</b><span>대전 오류점 주소를 입력해주세요</span></li>
+          <li><b>영업시간</b><span>영업시간을 입력해주세요 (예: 매일 10:00–24:00)</span></li>
+          <li><b>문의</b><span>지점 연락처를 입력해주세요</span></li>
+        </ul>
+        <div class="loc-rooms">
+          <span class="chip">합주실</span>
+          <span class="chip">개인연습실</span>
+          <span class="chip">보컬레슨실</span>
+        </div>
+        <div class="loc-actions">
+          <a href="https://map.naver.com/p/entry/place/1135958192?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-reserve">오류점 예약하기</a>
+          <a href="https://map.naver.com/p/entry/place/1135958192" target="_blank" rel="noopener" class="btn btn-map">위치 보기</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 갈마점 -->
+    <div class="loc-card">
+      <div class="loc-slideshow" id="galma-slideshow">
+        <div class="slides">
+          <img src="images/galma-01.jpg" class="slide active" alt="갈마점 합주실 전경">
+          <img src="images/galma-02.jpg" class="slide" alt="갈마점 소파 및 앰프">
+          <img src="images/galma-03.jpg" class="slide" alt="갈마점 드럼 및 건반">
+          <img src="images/galma-04.jpg" class="slide" alt="갈마점 복도 및 입구">
+          <img src="images/galma-05.jpg" class="slide" alt="갈마점 개인연습실">
+          <img src="images/galma-06.jpg" class="slide" alt="갈마점 개인연습실 냉난방기">
+        </div>
+        <span class="loc-tag slideshow-tag">STUDIO 02</span>
+        <button class="slide-nav prev" onclick="moveSlide('galma-slideshow', -1)" aria-label="이전 사진">‹</button>
+        <button class="slide-nav next" onclick="moveSlide('galma-slideshow', 1)" aria-label="다음 사진">›</button>
+        <div class="slide-dots"></div>
+      </div>
+      <div class="loc-body">
+        <h3>갈마점</h3>
+        <ul class="loc-info">
+          <li><b>주소</b><span>대전 갈마점 주소를 입력해주세요</span></li>
+          <li><b>영업시간</b><span>영업시간을 입력해주세요 (예: 매일 10:00–24:00)</span></li>
+          <li><b>문의</b><span>지점 연락처를 입력해주세요</span></li>
+        </ul>
+        <div class="loc-rooms">
+          <span class="chip">합주실</span>
+          <span class="chip">녹음부스</span>
+          <span class="chip">개인연습실</span>
+        </div>
+        <div class="loc-actions">
+          <a href="https://map.naver.com/p/entry/place/1007946507?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-reserve">갈마점 예약하기</a>
+          <a href="https://map.naver.com/p/entry/place/1007946507" target="_blank" rel="noopener" class="btn btn-map">위치 보기</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="facilities" id="facilities">
+  <div class="section-head">
+    <p class="kicker">FACILITIES</p>
+    <h2>공간을 채우는 것들</h2>
+  </div>
+  <div class="fac-grid">
+    <div class="fac-item">
+      <span class="num">01</span>
+      <h4>방음 합주실</h4>
+      <p>드럼, 앰프까지 갖춘 완전 방음 합주 공간입니다.</p>
+    </div>
+    <div class="fac-item">
+      <span class="num">02</span>
+      <h4>개인 연습실</h4>
+      <p>혼자 조용히 연습할 수 있는 소규모 룸을 운영합니다.</p>
+    </div>
+    <div class="fac-item">
+      <span class="num">03</span>
+      <h4>보컬 · 레슨실</h4>
+      <p>모니터 스피커와 마이크가 준비된 레슨 전용 공간입니다.</p>
+    </div>
+    <div class="fac-item">
+      <span class="num">04</span>
+      <h4>간편 예약</h4>
+      <p>네이버 예약으로 원하는 시간을 바로 확인하고 예약하세요.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <h2>지금 바로 시간을 예약하세요</h2>
+  <p>가까운 지점을 선택하면 네이버 예약 페이지로 연결됩니다.</p>
+  <div class="cta-actions">
+    <a href="https://map.naver.com/p/entry/place/1135958192?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-primary">오류점 예약</a>
+    <a href="https://map.naver.com/p/entry/place/1007946507?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-ghost">갈마점 예약</a>
+  </div>
+</section>
+
+<footer>
+  <span>SMALLS MUSIC STUDIO · 대전 오류점 · 갈마점</span>
+  <span><a href="https://blog.naver.com/smalls818/224189523728" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">네이버 블로그 바로가기</a></span>
+  <span>© 2026 Smalls Music Studio. All rights reserved.</span>
+</footer>
+
+<script>
+  (function initSlideshows(){
+    document.querySelectorAll('.loc-slideshow').forEach(function(box){
+      const slides = box.querySelectorAll('.slide');
+      const dotsWrap = box.querySelector('.slide-dots');
+      let current = 0;
+      let timer = null;
+
+      slides.forEach(function(_, i){
+        const dot = document.createElement('span');
+        if(i === 0) dot.classList.add('active');
+        dot.addEventListener('click', function(){ show(i); resetTimer(); });
+        dotsWrap.appendChild(dot);
+      });
+
+      function show(index){
+        slides[current].classList.remove('active');
+        dotsWrap.children[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dotsWrap.children[current].classList.add('active');
+      }
+
+      function resetTimer(){
+        clearInterval(timer);
+        timer = setInterval(function(){ show(current + 1); }, 4500);
+      }
+
+      box._show = show;
+      resetTimer();
+      box.addEventListener('mouseenter', function(){ clearInterval(timer); });
+      box.addEventListener('mouseleave', resetTimer);
+    });
+  })();
+
+  function moveSlide(id, dir){
+    const box = document.getElementById(id);
+    const active = box.querySelector('.slide.active');
+    const slides = Array.from(box.querySelectorAll('.slide'));
+    const idx = slides.indexOf(active);
+    box._show(idx + dir);
+  }
+</script>
+</body>
+</html>
