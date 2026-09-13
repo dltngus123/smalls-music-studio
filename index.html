@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-0:#141316;
-    --bg-1:#1c1b1f;
-    --bg-2:#242226;
-    --line:#37343a;
-    --ink:#f2ede4;
-    --ink-dim:#a9a3ad;
-    --amber:#e8a33d;
-    --amber-dim:#6b5730;
+    --bg-0:#faf6ee;
+    --bg-1:#ffffff;
+    --bg-2:#f1ebdd;
+    --line:#e3dcc9;
+    --ink:#26221c;
+    --ink-dim:#78705f;
+    --amber:#c1721f;
+    --amber-dim:#f0dab3;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -36,7 +36,7 @@
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 6vw;
-    background:rgba(20,19,22,0.88);
+    background:rgba(250,246,238,0.88);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -61,8 +61,8 @@
     content:"";
     position:absolute; inset:0;
     background:
-      radial-gradient(ellipse 60% 50% at 78% 8%, rgba(232,163,61,0.16), transparent 60%),
-      radial-gradient(ellipse 40% 40% at 10% 100%, rgba(232,163,61,0.08), transparent 60%);
+      radial-gradient(ellipse 60% 50% at 78% 8%, rgba(193,114,31,0.14), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 100%, rgba(193,114,31,0.08), transparent 60%);
     pointer-events:none;
   }
   .hero-eyebrow{
@@ -95,7 +95,7 @@
     border:1px solid transparent;
     transition:transform .15s ease, background .2s ease, border-color .2s ease;
   }
-  .btn-primary{background:var(--amber); color:#1a1508;}
+  .btn-primary{background:var(--amber); color:#fff;}
   .btn-primary:hover{transform:translateY(-2px);}
   .btn-ghost{border-color:var(--line); color:var(--ink);}
   .btn-ghost:hover{border-color:var(--amber);}
@@ -152,7 +152,7 @@
   /* ---------- slideshow ---------- */
   .loc-slideshow{
     position:relative;
-    height:220px;
+    height:320px;
     overflow:hidden;
     background:var(--bg-2);
   }
@@ -160,7 +160,8 @@
   .loc-slideshow .slide{
     position:absolute; inset:0;
     width:100%; height:100%;
-    object-fit:cover;
+    object-fit:contain;
+    background:var(--bg-2);
     opacity:0;
     transition:opacity .5s ease;
   }
@@ -189,7 +190,7 @@
     display:flex; align-items:center; justify-content:center;
     transition:background .2s, border-color .2s;
   }
-  .slide-nav:hover{background:rgba(232,163,61,0.85); color:#1a1508; border-color:transparent;}
+  .slide-nav:hover{background:rgba(193,114,31,0.9); color:#fff; border-color:transparent;}
   .slide-nav.prev{left:14px;}
   .slide-nav.next{right:14px;}
   .slide-dots{
@@ -224,7 +225,7 @@
     flex:1;
     justify-content:center;
     background:var(--amber);
-    color:#1a1508;
+    color:#fff;
   }
   .btn-map{
     justify-content:center;
@@ -350,9 +351,9 @@
       <div class="loc-body">
         <h3>오류점</h3>
         <ul class="loc-info">
-          <li><b>주소</b><span>대전 오류점 주소를 입력해주세요</span></li>
-          <li><b>영업시간</b><span>영업시간을 입력해주세요 (예: 매일 10:00–24:00)</span></li>
-          <li><b>문의</b><span>지점 연락처를 입력해주세요</span></li>
+          <li><b>주소</b><span>대전 중구 동서대로1304번길 8, 4층 (오류동 184-3)</span></li>
+          <li><b>영업시간</b><span>24시간 연중무휴</span></li>
+          <li><b>문의</b><span>0507-1437-3325</span></li>
         </ul>
         <div class="loc-rooms">
           <span class="chip">합주실</span>
@@ -385,9 +386,9 @@
       <div class="loc-body">
         <h3>갈마점</h3>
         <ul class="loc-info">
-          <li><b>주소</b><span>대전 갈마점 주소를 입력해주세요</span></li>
-          <li><b>영업시간</b><span>영업시간을 입력해주세요 (예: 매일 10:00–24:00)</span></li>
-          <li><b>문의</b><span>지점 연락처를 입력해주세요</span></li>
+          <li><b>주소</b><span>대전 서구 계룡로 399, 3층 (갈마동 273-37)</span></li>
+          <li><b>영업시간</b><span>24시간 연중무휴</span></li>
+          <li><b>문의</b><span>0507-1406-3402</span></li>
         </ul>
         <div class="loc-rooms">
           <span class="chip">합주실</span>
