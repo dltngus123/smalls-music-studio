@@ -217,6 +217,27 @@
   .loc-info li{display:flex; gap:10px;}
   .loc-info b{color:var(--ink); min-width:52px; font-weight:600;}
   .loc-rooms{display:flex; flex-wrap:wrap; gap:8px;}
+  .loc-price{
+    display:flex; flex-direction:column; gap:8px;
+    padding-top:14px; margin-top:2px;
+    border-top:1px solid var(--line);
+  }
+  .price-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:.9rem;
+  }
+  .price-row span{color:var(--ink-dim);}
+  .price-row b{color:var(--ink); font-weight:700; white-space:nowrap;}
+  .loc-gear{
+    padding-top:12px; margin-top:2px;
+    border-top:1px solid var(--line);
+  }
+  .loc-gear b{
+    display:block; font-size:.82rem; font-weight:600;
+    color:var(--ink); margin-bottom:6px;
+  }
+  .loc-gear p{margin:0; color:var(--ink-dim); font-size:.82rem; line-height:1.6;}
+  .loc-gear-note{margin-top:6px !important; color:var(--ink-dim); opacity:.85;}
   .chip{
     font-size:.8rem; padding:5px 11px; border:1px solid var(--line); color:var(--ink-dim); border-radius:20px;
   }
@@ -274,7 +295,8 @@
       <li><a href="#locations">지점 안내</a></li>
       <li><a href="#facilities">시설</a></li>
       <li><a href="#contact">오시는 길</a></li>
-      <li><a href="https://blog.naver.com/smalls818/224189523728" target="_blank" rel="noopener">블로그</a></li>
+      <li><a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener">블로그</a></li>
+      <li><a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener">인스타그램</a></li>
     </ul>
   </nav>
 </header>
@@ -358,7 +380,19 @@
         <div class="loc-rooms">
           <span class="chip">합주실</span>
           <span class="chip">개인연습실</span>
-          <span class="chip">보컬레슨실</span>
+          <span class="chip">무료주차</span>
+        </div>
+        <div class="loc-price">
+          <div class="price-row"><span>합주실 예약 (1시간)</span><b>18,000원</b></div>
+          <div class="price-row"><span>개인연습실 A room</span><b>380,000원</b></div>
+          <div class="price-row"><span>개인연습실 B room</span><b>350,000원</b></div>
+          <div class="price-row"><span>개인연습실 C room</span><b>350,000원</b></div>
+          <div class="price-row"><span>개인연습실 D room</span><b>380,000원</b></div>
+          <div class="price-row"><span>개인연습실 E room</span><b>320,000원</b></div>
+        </div>
+        <div class="loc-gear">
+          <b>합주실 보유 장비</b>
+          <p>믹서 YAMAHA MG16XU · 스피커 JBL 712M · 마이크 Shure QLXD, Beta58A(무선), SM58×3 · 기타앰프 Marshall Code 100H / Fender Deluxe 112 · 베이스앰프 Ampeg BA115-V2 · 건반 Kurzweil SP6 · 드럼 YAMAHA Live Custom / DW Collector / HHX Evolution / DW5000</p>
         </div>
         <div class="loc-actions">
           <a href="https://map.naver.com/p/entry/place/1135958192?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-reserve">오류점 예약하기</a>
@@ -392,8 +426,16 @@
         </ul>
         <div class="loc-rooms">
           <span class="chip">합주실</span>
-          <span class="chip">녹음부스</span>
           <span class="chip">개인연습실</span>
+        </div>
+        <div class="loc-price">
+          <div class="price-row"><span>합주실 대여</span><b>15,000원</b></div>
+          <div class="price-row"><span>개인 연습실</span><b>150,000원</b></div>
+        </div>
+        <div class="loc-gear">
+          <b>합주실 보유 장비</b>
+          <p>기타앰프 Fender Champion 100 / Marshall MG100FX · 베이스앰프 Ampeg BA112 V2 · 건반 YAMAHA MX88 · 드럼 GRETCH Catalina Maple 7기통 (HHX Evolution, Zildjian K)</p>
+          <p class="loc-gear-note">※ 기타·베이스는 대여하지 않습니다 · 각 방 에어컨·번호키 설치 · 복도 CCTV 설치</p>
         </div>
         <div class="loc-actions">
           <a href="https://map.naver.com/p/entry/place/1007946507?placePath=/ticket" target="_blank" rel="noopener" class="btn btn-reserve">갈마점 예약하기</a>
@@ -445,7 +487,11 @@
 
 <footer>
   <span>SMALLS MUSIC STUDIO · 대전 오류점 · 갈마점</span>
-  <span><a href="https://blog.naver.com/smalls818/224189523728" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">네이버 블로그 바로가기</a></span>
+  <span>
+    <a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">네이버 블로그</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">인스타그램</a>
+  </span>
   <span>© 2026 Smalls Music Studio. All rights reserved.</span>
 </footer>
 
