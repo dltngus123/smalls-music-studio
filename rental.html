@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>악기렌탈 | 스몰즈 뮤직스튜디오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Pretendard';
+    src:url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Regular.woff2') format('woff2');
+    font-weight:400; font-display:swap;
+    unicode-range:U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
+  }
+  @font-face{
+    font-family:'Pretendard';
+    src:url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Medium.woff2') format('woff2');
+    font-weight:500; font-display:swap;
+    unicode-range:U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
+  }
+  @font-face{
+    font-family:'Pretendard';
+    src:url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight:600; font-display:swap;
+    unicode-range:U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
+  }
+  @font-face{
+    font-family:'Pretendard';
+    src:url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Bold.woff2') format('woff2');
+    font-weight:700; font-display:swap;
+    unicode-range:U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
+  }
+  :root{
+    --bg-0:#faf6ee;
+    --bg-1:#ffffff;
+    --bg-2:#f1ebdd;
+    --line:#e3dcc9;
+    --ink:#26221c;
+    --ink-dim:#78705f;
+    --amber:#c1721f;
+    --amber-dim:#f0dab3;
+    --brand-green:#145a4a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-0);
+    color:var(--ink);
+    font-family:'Pretendard', 'Noto Sans KR', sans-serif;
+    line-height:1.6;
+  }
+  .num{font-family:'Oswald', sans-serif;}
+  a{color:inherit;}
+
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(250,246,238,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand img{height:40px; width:auto; display:block;}
+  .brand-text{font-weight:700; font-size:1.05rem; letter-spacing:.02em; white-space:nowrap;}
+  .brand-smalls{color:#293d40;}
+  .brand-sub{color:var(--amber); font-weight:600;}
+  nav ul{list-style:none; display:flex; gap:14px; margin:0; padding:0;}
+  nav ul li{display:flex; align-items:center;}
+  nav ul li:not(:last-child)::after{content:"|"; margin-left:14px; color:var(--line); font-weight:400;}
+  nav a{text-decoration:none; color:var(--ink-dim); font-size:.92rem; font-weight:500; transition:color .2s;}
+  nav a:hover{color:var(--ink);}
+  nav a.current{color:var(--amber); font-weight:700;}
+
+  .page-hero{
+    padding:10vh 6vw 6vh;
+    border-bottom:1px solid var(--line);
+  }
+  .page-hero .kicker{color:var(--amber); font-weight:600; font-size:.9rem; margin:0 0 12px;}
+  .page-hero h1{font-size:clamp(2rem, 4.4vw, 3.2rem); font-weight:900; margin:0 0 18px;}
+  .page-hero p{color:var(--ink-dim); max-width:60ch; font-size:1.02rem; margin:0;}
+
+  section{padding:8vh 6vw;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+  .section-head p.kicker{color:var(--amber); font-weight:600; font-size:.9rem; margin:0 0 12px;}
+  .section-head h2{font-size:clamp(1.5rem, 2.6vw, 2.1rem); font-weight:700; margin:0 0 12px;}
+  .section-head .desc{color:var(--ink-dim); max-width:56ch;}
+
+  .rental-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+  }
+  .rental-card{
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    padding:24px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .rental-card h3{margin:0; font-size:1.1rem; font-weight:700;}
+  .rental-card .price{color:var(--amber); font-weight:700; font-size:1.2rem;}
+  .rental-card p{margin:0; color:var(--ink-dim); font-size:.9rem; line-height:1.6;}
+  .placeholder-note{
+    border:1px dashed var(--line);
+    background:var(--bg-2);
+    padding:16px 20px;
+    color:var(--ink-dim);
+    font-size:.88rem;
+    border-radius:2px;
+  }
+
+  .cta{
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .cta h2{font-size:clamp(1.4rem, 3vw, 2rem); margin:0 0 16px; font-weight:700;}
+  .cta p{color:var(--ink-dim); max-width:48ch; margin:0 auto 28px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:3px;
+    text-decoration:none; font-weight:600; font-size:.95rem;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--amber); color:#fff;}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+
+  footer{
+    padding:6vh 6vw;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    color:var(--ink-dim); font-size:.85rem;
+  }
+
+  @media (max-width: 860px){
+    nav ul{display:none;}
+    .rental-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="brand">
+    <img src="images/logo.png" alt="Smalls Music Studio 로고">
+    <span class="brand-text"><span class="brand-smalls">SMALLS</span> <span class="brand-sub">MUSIC STUDIO</span></span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html#about">스튜디오 소개</a></li>
+      <li><a href="index.html#locations">지점 안내</a></li>
+      <li><a href="index.html#facilities">시설</a></li>
+      <li><a href="index.html#contact">오시는 길</a></li>
+      <li><a href="rental.html" class="current">악기렌탈</a></li>
+      <li><a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener">블로그</a></li>
+      <li><a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener">인스타그램</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <p class="kicker">RENTAL</p>
+  <h1>악기렌탈</h1>
+  <p>합주에 필요한 악기와 장비를 대여해드립니다. 아래 내용은 준비 중이며, 실제 렌탈 품목과 가격으로 곧 채워질 예정입니다.</p>
+</section>
+
+<section>
+  <div class="section-head">
+    <p class="kicker">ITEMS</p>
+    <h2>렌탈 가능 품목</h2>
+    <p class="desc">지점별로 대여 가능한 악기·장비 목록입니다. (현재는 예시 항목이며, 실제 품목/가격으로 교체해주세요)</p>
+  </div>
+
+  <div class="rental-grid">
+    <div class="rental-card">
+      <h3>일렉기타</h3>
+      <div class="price">가격 입력</div>
+      <p>대여 기간, 보증금, 포함 구성품(케이블·피크 등)을 여기에 적어주세요.</p>
+    </div>
+    <div class="rental-card">
+      <h3>베이스기타</h3>
+      <div class="price">가격 입력</div>
+      <p>대여 기간, 보증금, 포함 구성품을 여기에 적어주세요.</p>
+    </div>
+    <div class="rental-card">
+      <h3>기타 앰프</h3>
+      <div class="price">가격 입력</div>
+      <p>모델명, 대여 기간, 보증금을 여기에 적어주세요.</p>
+    </div>
+    <div class="rental-card">
+      <h3>베이스 앰프</h3>
+      <div class="price">가격 입력</div>
+      <p>모델명, 대여 기간, 보증금을 여기에 적어주세요.</p>
+    </div>
+    <div class="rental-card">
+      <h3>마이크 / 스탠드</h3>
+      <div class="price">가격 입력</div>
+      <p>모델명, 대여 기간, 보증금을 여기에 적어주세요.</p>
+    </div>
+    <div class="rental-card">
+      <h3>기타 장비</h3>
+      <div class="price">가격 입력</div>
+      <p>이펙터, 케이블, 픽 등 기타 대여 품목을 여기에 적어주세요.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="placeholder-note">
+    💡 이 페이지는 템플릿입니다. 위 카드의 품목/가격/설명을 실제 렌탈 정보로 교체하고, 필요하면 카드를 더 추가하거나 지워서 사용하세요.
+  </div>
+</section>
+
+<section class="cta">
+  <h2>렌탈 문의</h2>
+  <p>원하시는 지점에 문의하시면 대여 가능 여부와 예약 방법을 안내해드립니다.</p>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <a href="index.html#contact" class="btn btn-primary">지점 연락처 보기</a>
+    <a href="index.html" class="btn btn-ghost">메인으로 돌아가기</a>
+  </div>
+</section>
+
+<footer>
+  <span><span class="brand-smalls" style="font-weight:700;">SMALLS</span> <span style="color:var(--amber); font-weight:700;">MUSIC STUDIO</span> · 악기렌탈</span>
+  <span>© 2026 Smalls Music Studio. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
