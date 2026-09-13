@@ -224,7 +224,8 @@
   .section-head{max-width:640px; margin-bottom:56px;}
   .section-head p.kicker{color:var(--amber); font-weight:600; font-size:.9rem; margin:0 0 12px;}
   .section-head h2{font-size:clamp(1.7rem, 3vw, 2.4rem); font-weight:700; margin:0 0 14px; line-height:1.3;}
-  .section-head .desc{color:var(--ink-dim); max-width:56ch;}
+  .section-head .desc{color:var(--ink-dim); max-width:56ch; margin:0 0 14px;}
+  .section-head .desc:last-child{margin-bottom:0;}
 
   /* ---------- about ---------- */
   .about{border-bottom:1px solid var(--line);}
@@ -234,6 +235,13 @@
   .about-list li:last-child{border-bottom:none;}
   .about-list h3{margin:0 0 6px; font-size:1.05rem; font-weight:600;}
   .about-list p{margin:0; color:var(--ink-dim); font-size:.94rem;}
+  .about-eyebrow{
+    margin:0 0 6px;
+    font-weight:700;
+    color:var(--amber);
+    font-size:.88rem;
+    letter-spacing:.01em;
+  }
 
   /* ---------- locations ---------- */
   .locations{border-bottom:1px solid var(--line);}
@@ -412,7 +420,7 @@
 
   /* ---------- facilities ---------- */
   .facilities{border-bottom:1px solid var(--line);}
-  .fac-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .fac-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
   .fac-item{background:var(--bg-0); padding:30px 24px;}
   .fac-item .num{color:var(--amber); font-size:1.1rem; display:block; margin-bottom:14px;}
   .fac-item h4{margin:0 0 8px; font-size:1rem; font-weight:600;}
@@ -436,29 +444,40 @@
 
   @media (max-width: 1180px){
     .loc-grid{grid-template-columns:1fr 1fr;}
+    .fac-grid{grid-template-columns:repeat(2, 1fr);}
   }
   /* ---------- mobile nav toggle ---------- */
   .nav-toggle{
     display:none;
-    flex-direction:column;
+    align-items:center;
     justify-content:center;
-    gap:5px;
-    width:36px; height:36px;
+    gap:3px;
+    width:40px; height:40px;
     padding:0;
-    border:none;
-    background:transparent;
+    border:1px solid var(--line);
+    border-radius:50%;
+    background:var(--bg-1);
     cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
   }
   .nav-toggle span{
     display:block;
-    width:100%; height:2px;
-    background:var(--ink);
-    border-radius:2px;
-    transition:transform .25s ease, opacity .2s ease;
+    width:3px;
+    border-radius:3px;
+    background:var(--amber);
+    transition:transform .25s ease, height .25s ease, opacity .2s ease;
   }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle span:nth-child(1){height:8px;}
+  .nav-toggle span:nth-child(2){height:15px;}
+  .nav-toggle span:nth-child(3){height:10px;}
+  .nav-toggle[aria-expanded="true"]{border-color:var(--amber);}
+  .nav-toggle[aria-expanded="true"] span{
+    position:relative; height:15px;
+    background:var(--amber);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(3px, 0);}
   .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(3px, 0);}
 
   @media (max-width: 860px){
     .nav-toggle{display:flex;}
@@ -499,7 +518,7 @@
     <ul>
       <li><a href="#about">스튜디오 소개</a></li>
       <li><a href="#locations-head">지점 안내</a></li>
-      <li><a href="#facilities">시설</a></li>
+      <li><a href="#facilities">이용대상</a></li>
       <li><a href="#contact">바로 예약하기</a></li>
       <li><a href="rental.html">악기렌탈</a></li>
       <li><a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener">블로그</a></li>
@@ -534,22 +553,32 @@
 <section class="about" id="about">
   <div class="about-grid">
     <div class="section-head" style="margin-bottom:0;">
-      <p class="kicker">ABOUT</p>
-      <h2>악기를 메고 오면,<br>나머지는 공간이 채웁니다.</h2>
-      <p class="desc">방음, 장비까지 고민할 필요 없이 시간 맞춰 오시면 됩니다. 밴드 합주부터 보컬 레슨, 혼자만의 연습까지 목적에 맞는 룸을 지점별로 운영하고 있습니다.</p>
+      <p class="kicker">ABOUT SMALLS MUSIC STUDIO</p>
+      <h2>오롯이 음악에만 몰입하는 공간,<br>스몰즈 뮤직스튜디오</h2>
+      <p class="desc">스몰즈 뮤직스튜디오는 보컬, 악기 연주, 미디(MIDI) 작곡, 레슨 등 모든 음악 활동을 위한 프리미엄 24시간 무인 음악 연습실 &amp; 방음 스튜디오입니다.</p>
+      <p class="desc">바쁜 일상 속에서도 시간에 구애받지 않고 오롯이 창작과 연습에 집중할 수 있도록 특수 방음 설계와 쾌적한 내부 시설, 편리한 위치성을 갖추었습니다.</p>
+      <p class="desc">가장 편안한 분위기에서 최상의 영감을 이끌어낼 수 있는 음악적 공간을 제안합니다.</p>
     </div>
     <ul class="about-list">
       <li>
-        <h3>시간제 예약</h3>
-        <p>기본 2시간, 30분 단위로 필요한 만큼만 예약해서 사용할 수 있습니다.</p>
+        <p class="about-eyebrow">24/7 Unlimited Access</p>
+        <h3>24시간 365일 무인 시스템</h3>
+        <p>원하는 시간에 언제든 예약하여 자유롭게 작업 가능</p>
       </li>
       <li>
-        <h3>지점별 특화 공간</h3>
-        <p>갈마점, 오룡역점, 갈마 3호점은 각각 다른 룸 구성으로 운영되어, 목적에 맞는 지점을 선택할 수 있습니다.</p>
+        <p class="about-eyebrow">Professional Acoustic &amp; Soundproof</p>
+        <h3>방음 &amp; 음향 설계</h3>
+        <p>외부 소음 차단 및 최적의 잔향감을 고려한 음향 공간 설계로 고집중 작업 환경 제공</p>
       </li>
       <li>
-        <h3>온라인 예약</h3>
-        <p>전화 없이 네이버 예약 페이지에서 원하는 시간을 바로 확인하고 예약할 수 있습니다.</p>
+        <p class="about-eyebrow">Comfortable Environment</p>
+        <h3>쾌적하고 감성적인 인테리어</h3>
+        <p>초고속 Wi-Fi, 모던하고 감성적인 조명 연출로 편안한 작업실 구성</p>
+      </li>
+      <li>
+        <p class="about-eyebrow">Prime Location</p>
+        <h3>우수한 접근성</h3>
+        <p>지하철역 및 주요 대중교통 인근(갈마점, 오룡역점 등)에 위치해 편리한 이동 동선 확보</p>
       </li>
     </ul>
   </div>
@@ -767,24 +796,29 @@
 
 <section class="facilities" id="facilities">
   <div class="section-head">
-    <p class="kicker">FACILITIES</p>
-    <h2>필요한 건 다 갖췄어요</h2>
+    <p class="kicker">WHO WE ARE FOR</p>
+    <h2>이용대상 및 공간 추천</h2>
   </div>
   <div class="fac-grid">
     <div class="fac-item">
       <span class="num">01</span>
-      <h4>방음 합주실</h4>
-      <p>드럼, 앰프까지 갖춘 완전 방음 합주 공간입니다.</p>
+      <h4>Vocal &amp; Instrument</h4>
+      <p>보컬, 기타, 건반, 관현악 등 집중 개인 연습이 필요한 분</p>
     </div>
     <div class="fac-item">
       <span class="num">02</span>
-      <h4>개인 연습실</h4>
-      <p>혼자 조용히 연습할 수 있는 소규모 룸을 운영합니다.</p>
+      <h4>MIDI &amp; Production</h4>
+      <p>비트메이킹, 미디 작곡, 음원 믹싱/마스터링 작업 공간이 필요한 프로듀서</p>
     </div>
     <div class="fac-item">
       <span class="num">03</span>
-      <h4>간편 예약</h4>
-      <p>네이버 예약으로 원하는 시간을 바로 확인하고 예약하세요.</p>
+      <h4>Lesson &amp; Class</h4>
+      <p>쾌적하고 프라이빗한 공간에서 1:1 음악 레슨을 진행하는 트레이너</p>
+    </div>
+    <div class="fac-item">
+      <span class="num">04</span>
+      <h4>Content Creator</h4>
+      <p>커버 영상 촬영, 음악 방송, 팟캐스트 등 고품질 음향 환경이 필요한 크리에이터</p>
     </div>
   </div>
 </section>

@@ -45,6 +45,35 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+
+  /* ---------- scroll to top ---------- */
+  .scroll-top{
+    position:fixed;
+    bottom:28px; right:28px;
+    z-index:70;
+    width:48px; height:48px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    color:var(--ink);
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,0.12);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:opacity .25s ease, transform .25s ease, background .2s ease, color .2s ease;
+  }
+  .scroll-top.visible{
+    opacity:1; visibility:visible; transform:translateY(0);
+  }
+  .scroll-top:hover{
+    background:var(--amber); color:#fff; border-color:transparent;
+  }
+  @media (max-width:600px){
+    .scroll-top{width:42px; height:42px; bottom:18px; right:18px; font-size:1.1rem;}
+  }
   body{
     margin:0;
     background:var(--bg-0);
@@ -64,7 +93,6 @@
     border-bottom:1px solid var(--line);
   }
   .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
-  .brand img{height:40px; width:auto; display:block;}
   .brand-text{font-weight:700; font-size:1.05rem; letter-spacing:.02em; white-space:nowrap;}
   .brand-smalls{color:#293d40;}
   .brand-sub{color:var(--amber); font-weight:600;}
@@ -74,6 +102,39 @@
   nav a{text-decoration:none; color:var(--ink-dim); font-size:.92rem; font-weight:500; transition:color .2s;}
   nav a:hover{color:var(--ink);}
   nav a.current{color:var(--amber); font-weight:700;}
+
+  /* ---------- mobile nav toggle ---------- */
+  .nav-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    width:40px; height:40px;
+    padding:0;
+    border:1px solid var(--line);
+    border-radius:50%;
+    background:var(--bg-1);
+    cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .nav-toggle span{
+    display:block;
+    width:3px;
+    border-radius:3px;
+    background:var(--amber);
+    transition:transform .25s ease, height .25s ease, opacity .2s ease;
+  }
+  .nav-toggle span:nth-child(1){height:8px;}
+  .nav-toggle span:nth-child(2){height:15px;}
+  .nav-toggle span:nth-child(3){height:10px;}
+  .nav-toggle[aria-expanded="true"]{border-color:var(--amber);}
+  .nav-toggle[aria-expanded="true"] span{
+    position:relative; height:15px;
+    background:var(--amber);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(3px, 0);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(3px, 0);}
 
   .page-hero{
     padding:10vh 6vw 6vh;
@@ -132,7 +193,29 @@
   }
 
   @media (max-width: 860px){
-    nav ul{display:none;}
+    .nav-toggle{display:flex;}
+    nav#site-nav{
+      display:block;
+      position:absolute;
+      top:100%; left:0; right:0;
+      background:var(--bg-0);
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    nav#site-nav.open{max-height:420px;}
+    nav#site-nav ul{
+      flex-direction:column; gap:0;
+      padding:8px 6vw 18px;
+    }
+    nav#site-nav ul li{
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+    }
+    nav#site-nav ul li:last-child{border-bottom:none;}
+    nav#site-nav ul li:not(:last-child)::after{display:none;}
+    header{position:relative;}
     .rental-grid{grid-template-columns:1fr;}
   }
 </style>
@@ -141,20 +224,22 @@
 
 <header>
   <a href="index.html" class="brand">
-    <img src="images/logo.png" alt="Smalls Music Studio 로고">
     <span class="brand-text"><span class="brand-smalls">SMALLS</span> <span class="brand-sub">MUSIC STUDIO</span></span>
   </a>
-  <nav>
+  <nav id="site-nav">
     <ul>
       <li><a href="index.html#about">스튜디오 소개</a></li>
-      <li><a href="index.html#locations">지점 안내</a></li>
+      <li><a href="index.html#locations-head">지점 안내</a></li>
       <li><a href="index.html#facilities">시설</a></li>
-      <li><a href="index.html#contact">오시는 길</a></li>
+      <li><a href="index.html#contact">바로 예약하기</a></li>
       <li><a href="rental.html" class="current">악기렌탈</a></li>
       <li><a href="https://blog.naver.com/smalls818" target="_blank" rel="noopener">블로그</a></li>
       <li><a href="https://www.instagram.com/smallsmusic/" target="_blank" rel="noopener">인스타그램</a></li>
     </ul>
   </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <section class="page-hero">
@@ -220,9 +305,48 @@
 </section>
 
 <footer>
-  <span><span class="brand-smalls" style="font-weight:700;">SMALLS</span> <span style="color:var(--amber); font-weight:700;">MUSIC STUDIO</span> · 악기렌탈</span>
+  <span style="display:flex; align-items:center; gap:10px;">
+    <img src="images/logo.png" alt="Smalls Music Studio 로고" style="height:28px; width:auto; display:block;">
+    <span>· 악기렌탈</span>
+  </span>
   <span>© 2026 Smalls Music Studio. All rights reserved.</span>
 </footer>
 
+<button id="scroll-top" class="scroll-top" aria-label="맨 위로 이동">↑</button>
+
+<script>
+  (function initScrollTop(){
+    const btn = document.getElementById('scroll-top');
+    if(!btn) return;
+    function toggle(){
+      if(window.scrollY > 400){
+        btn.classList.add('visible');
+      }else{
+        btn.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', toggle, {passive:true});
+    toggle();
+    btn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  })();
+
+  (function initNavToggle(){
+    const btn = document.getElementById('nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if(!btn || !nav) return;
+    btn.addEventListener('click', function(){
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
 </body>
 </html>
